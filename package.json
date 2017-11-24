@@ -7,7 +7,7 @@
     "server": "nodemon --watch build --exec \"node build/bundle.js\"",
     "build:server": "webpack --config webpack.server.js --watch",
     "build:client": "webpack --config webpack.client.js --watch",
-    "build": "npm run server & npm run build:server & npm run build:client"
+    "start": "npm run server & npm run build:server & npm run build:client"
   },
   "author": "John Hannah",
   "license": "MIT",
