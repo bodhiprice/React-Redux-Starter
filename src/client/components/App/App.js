@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Posts from '../Home/Home;
 
 const App = () => (
   <div>
-    <p>Boom!!</p>
-    <button onClick={() => { console.log('Tacos!')}}>Press Me!</button>
+    <Link to='/about'>Boom</Link>
+    <Posts />
   </div>
 );
 

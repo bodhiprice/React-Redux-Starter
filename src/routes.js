@@ -1,10 +1,15 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import App from './client/components/App/App';
+import HomePage, { loadData } from './client/pages/HomePage';
+import PostPage from './client/pages/PostPage';
 
-export default () => (
-  <div>
-    <Route exact path="/" component={App} />
-    <Route path="/about" component={() => 'About'} />
-  </div>
-);
+export default [
+  {
+    ...HomePage,
+    path: '/',
+    exact: true
+  },
+  {
+    ...PostPage,
+    path: '/post/:id'
+  }
+];

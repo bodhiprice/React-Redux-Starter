@@ -1,26 +1,26 @@
 import React from 'react';
+import serialize from 'serialize-javascript';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import Routes from '../routes';
-import reducers from '../reducers';
 
-const store = createStore(reducers, {}, applyMiddleware(thunk));
-
-export default (path) => (`
-  <html>
-    <head></head>
-    <body>
-      <div id="root">${renderToString(
-        <Provider store={store}>
-          <StaticRouter location={path} context={{}}>
-            <Routes />
-          </StaticRouter>
-        </Provider>
-      )}</div>
-    </body>
-    <script src="bundle.js"></script>
-  </html>
-`);
+export default (path, store) => {
+  return `
+    <html>
+      <head></head>
+      <body>
+        <div id="root">${renderToString(<Provider store={store}>
+            <StaticRouter location={path} context={{}}>
+              <div>{renderRoutes(Routes)}</div>
+            </StaticRouter>
+          </Provider>)}</div>
+      </body>
+      <script>
+        window.INITIAL_STATE = ${serialize(store.getState())}
+      </script>
+      <script src="bundle.js"></script>
+    </html>
+  `;
+};
