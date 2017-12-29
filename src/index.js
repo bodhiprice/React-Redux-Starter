@@ -6,10 +6,13 @@ import thunk from 'redux-thunk';
 import Routes from './routes';
 import reducers from './reducers';
 import renderer from './utils/renderer';
+import favicon from 'serve-favicon';
+import path from 'path';
 
 const store = createStore(reducers, {}, applyMiddleware(thunk));
 
 const app = express();
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {

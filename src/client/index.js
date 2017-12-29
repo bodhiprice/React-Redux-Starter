@@ -10,15 +10,12 @@ import { css } from 'glamor';
 import Routes from '../routes';
 import reducers from '../reducers';
 
-css.global('html, body', { padding: 0 });
-css.global('body', { 'fontFamily': 'sans-serif', 'fontSize': '18px' });
-
 const store = createStore(reducers, window.INITIAL_STATE, applyMiddleware(thunk));
 
 ReactDOM.hydrate(
   <Provider store={store}>
     <BrowserRouter>
-      <div>{renderRoutes(Routes)}</div>
+      {renderRoutes(Routes)}
     </BrowserRouter>
   </Provider>,
   document.querySelector('#root')
