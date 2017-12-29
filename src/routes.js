@@ -1,15 +1,25 @@
 import React from 'react';
-import HomePage, { loadData } from './client/pages/HomePage';
+import App from './client/App';
+import HomePage from './client/pages/HomePage';
 import PostPage from './client/pages/PostPage';
+import NotFoundPage from './client/pages/NotFoundPage';
 
 export default [
   {
-    ...HomePage,
-    path: '/',
-    exact: true
-  },
-  {
-    ...PostPage,
-    path: '/post/:id'
+    ...App,
+    routes: [
+      {
+        ...HomePage,
+        path: '/',
+        exact: true
+      },
+      {
+        ...PostPage,
+        path: '/post/:id'
+      },
+      {
+        ...NotFoundPage
+      }
+    ]
   }
 ];
