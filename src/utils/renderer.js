@@ -4,11 +4,11 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
-import { renderStatic } from 'glamor/server';
+import { extractCritical } from 'emotion-server';
 import Routes from '../routes';
 
 export default (path, store) => {
-  const { html, css, ids } = renderStatic(() =>
+  const { html, ids, css } = extractCritical(() =>
     renderToString(
       <Provider store={store}>
         <StaticRouter location={path} context={{}}>
@@ -25,13 +25,13 @@ export default (path, store) => {
         <style type="text/css">${css}</style>
       </head>
       <body>
-        <div id="root">${html}</div>
+        <div id="root">${html()}</div>
       </body>
       <script>
         window.INITIAL_STATE = ${serialize(store.getState())}
       </script>
       <script>
-        window._glam = ${serialize(ids)}
+        window._emotion = ${serialize(ids)}
       </script>
       <script src="/bundle.js"></script>
     </html>

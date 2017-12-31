@@ -1,9 +1,16 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
-import { css } from 'glamor';
+import { injectGlobal } from 'emotion';
 
-css.global('html, body', { padding: 0 });
-css.global('body', { fontFamily: 'sans-serif', fontSize: '18px' });
+injectGlobal`
+  html, body {
+    padding: 10px;
+  }
+  body {
+    font-family: sans-serif;
+    font-size: 18px;
+  }
+`;
 
 const App = ({ route }) => (
   <div className="yipee">

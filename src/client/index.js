@@ -6,11 +6,12 @@ import { renderRoutes } from 'react-router-config';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { css } from 'glamor';
+import { hydrate } from 'emotion';
 import Routes from '../routes';
 import reducers from '../reducers';
 
 const store = createStore(reducers, window.INITIAL_STATE, applyMiddleware(thunk));
+hydrate(window._emotion);
 
 ReactDOM.hydrate(
   <Provider store={store}>
