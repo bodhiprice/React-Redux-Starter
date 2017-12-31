@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { css } from 'react-emotion';
+import { Helmet } from 'react-helmet';
+import { injectGlobal } from 'emotion';
 import { fetchPosts, fetchPostsIfNeeded } from '../../actions';
 
 class PostPage extends React.Component {
@@ -12,11 +14,14 @@ class PostPage extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Helmet>
+          <title>Post Page</title>
+        </Helmet>
         <h1>Post Page</h1>
-        <div className={alignment}>
+        <div className="alignment">
           <Link to="/">Return home</Link>
         </div>
-        <p>{this.props.post.body}</p>
+        <p className={lineHeight}>{this.props.post.body}</p>
       </React.Fragment>
     );
   }
@@ -29,9 +34,18 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const alignment = css`
-  text-align: right;
+// Critical styles injected into head. Use to avoid flash of unstyled content.
+injectGlobal`
+  .alignment {
+    text-align: right;
+  }
 `;
+
+// Applied on the client.
+const lineHeight = css`
+  line-height: 1.4;
+`;
+
 export default {
   component: connect(mapStateToProps, { fetchPosts, fetchPostsIfNeeded })(
     withRouter(PostPage)

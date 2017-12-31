@@ -5,6 +5,7 @@ import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { extractCritical } from 'emotion-server';
+import { Helmet as Meta } from 'react-helmet';
 import Routes from '../routes';
 
 export default (path, store) => {
@@ -17,11 +18,13 @@ export default (path, store) => {
       </Provider>
     )
   );
+  const meta = Meta.renderStatic();
   return `
     <html>
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+         ${meta.title.toString()}
         <style type="text/css">${css}</style>
       </head>
       <body>

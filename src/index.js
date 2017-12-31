@@ -16,6 +16,10 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
+  // Temporary hack to deal with favicon requests from browser
+  if (req.path === '/favicon.ico') {
+    return;
+  }
   const dataCalls = matchRoutes(Routes, req.path).map(({ route }) => (route.loadData ? route.loadData(store) : null));
 
   Promise.all(dataCalls)
