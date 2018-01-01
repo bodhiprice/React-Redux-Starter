@@ -18,7 +18,9 @@ class HomePage extends React.Component {
         <ul>
           {this.props.posts.map((post, index) => {
             return (
-              <li key={post.id}><Link to={`/post/${index}`}>{post.title}</Link></li>
+              <li key={post.id}>
+                <Link to={`/post/${index}`}>{post.title}</Link>
+              </li>
             );
           })}
         </ul>
@@ -30,8 +32,8 @@ class HomePage extends React.Component {
 const mapStateToProps = state => {
   return {
     posts: state.posts
-  }
-}
+  };
+};
 
 export default {
   component: connect(mapStateToProps, { fetchPosts, fetchPostsIfNeeded })(

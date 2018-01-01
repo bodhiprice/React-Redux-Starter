@@ -28,7 +28,7 @@ class PostPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const post = state.posts[`${ownProps.match.params.id}`]
+  const post = state.posts[`${ownProps.match.params.id}`];
   return {
     post
   };

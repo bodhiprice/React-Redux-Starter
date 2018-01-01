@@ -10,14 +10,16 @@ import { hydrate } from 'emotion';
 import Routes from '../routes';
 import reducers from '../reducers';
 
-const store = createStore(reducers, window.INITIAL_STATE, applyMiddleware(thunk));
+const store = createStore(
+  reducers,
+  window.INITIAL_STATE,
+  applyMiddleware(thunk)
+);
 hydrate(window._emotion);
 
 ReactDOM.hydrate(
   <Provider store={store}>
-    <BrowserRouter>
-      {renderRoutes(Routes)}
-    </BrowserRouter>
+    <BrowserRouter>{renderRoutes(Routes)}</BrowserRouter>
   </Provider>,
   document.querySelector('#root')
 );
