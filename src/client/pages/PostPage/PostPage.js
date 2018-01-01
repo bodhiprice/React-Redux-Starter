@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import { css } from 'react-emotion';
 import { Helmet } from 'react-helmet';
 import { injectGlobal } from 'emotion';
-import { fetchPosts, fetchPostsIfNeeded } from '../../actions';
+import { fetchPosts, fetchPostsIfNeeded } from '../../../actions';
 
 class PostPage extends React.Component {
   componentDidMount() {

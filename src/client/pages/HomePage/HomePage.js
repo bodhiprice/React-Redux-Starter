@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { fetchPosts, fetchPostsIfNeeded } from '../../actions';
+import { fetchPosts, fetchPostsIfNeeded } from '../../../actions';
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
   componentDidMount() {
     this.props.fetchPostsIfNeeded();
   }
